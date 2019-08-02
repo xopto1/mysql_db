@@ -9,6 +9,7 @@ verify_ssl = true
 sqlalchemy = "*"
 alembic = "*"
 pymysql = "*"
+mysql-db = "*"
 
 [requires]
 python_version = "3.6.8"
