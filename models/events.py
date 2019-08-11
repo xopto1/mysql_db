@@ -9,6 +9,7 @@ Base = declarative_base()
 
 
 class Event(Base):
+    __versioned__ = {}
     __tablename__ = 'events'
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.String())
