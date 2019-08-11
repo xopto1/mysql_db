@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, orm
 from sqlalchemy.ext.declarative import declarative_base
 # Needed for continuum
 from sqlalchemy_continuum import make_versioned
@@ -21,6 +21,16 @@ class User(Base):
     def __repr__(self):
         return "<User(first_name='%s', last_name='%s', nickname='%s')>" % (
                             self.full_name, self.last_name, self.nickname)
+
+
+class Article(Base):
+    __versioned__ = {}
+    __tablename__ = 'article'
+
+    id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
+    name = sa.Column(sa.Unicode(255))
+    content = sa.Column(sa.UnicodeText)
+
 
 # Needed for Continuum
 sa.orm.configure_mappers()
