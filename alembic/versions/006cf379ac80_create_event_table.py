@@ -28,9 +28,5 @@ def upgrade():
     )
 
 
-
-    schedule_published_on = db.Column(db.DateTime)
-
-
 def downgrade():
-    pass
+    op.drop_table('events')
