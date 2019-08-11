@@ -1,18 +1,20 @@
 import sqlalchemy as sa
 from sqlalchemy import orm
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_continuum import make_versioned
+from sqlalchemy.ext.declarative import declarative_base
 
 from utils.database import create_db_session, connect_string
 
-session = create_db_session(connect_string)
-Base = declarative_base()
 make_versioned(user_cls=None)
+Base = declarative_base()
+
+session = create_db_session(connect_string)
 
 
 class Article(Base):
     __versioned__ = {}
     __tablename__ = 'article'
+
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.Unicode(255))
     content = sa.Column(sa.UnicodeText)
@@ -21,23 +23,15 @@ class Article(Base):
 # after you have defined all your models, call configure_mappers:
 sa.orm.configure_mappers()
 
-article = Article(name='Some article', content='Some content')
+
+article = Article(name=u'Some article')
 session.add(article)
 session.commit()
 
-# article has now one version stored in database
-article.versions[0].name
-# 'Some article'
+article.versions[0].name == u'Some article'
 
-article.name = 'Updated name'
+article.name = u'Some updated article'
+
 session.commit()
 
-article.versions[1].name
-# 'Updated name'
-
-
-# lets revert back to first version
-article.versions[0].revert()
-
-article.name
-# 'Some article'
+article.versions[1].name == u'Some updated article'
