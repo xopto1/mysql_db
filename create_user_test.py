@@ -1,14 +1,7 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
 from models.all_models import User
+from utils.database import create_db_session, connect_string
 
-# connect_string = 'sqlite:///:memory:'
-connect_string = 'mysql+pymysql://root:@localhost/sample_db_local'
-engine = create_engine(connect_string)
-
-SESSION = sessionmaker(bind=engine)
-session = SESSION()
+session = create_db_session(connect_string)
 
 
 def create_user_direct():
