@@ -1,4 +1,5 @@
 import sqlalchemy as sa
+from sqlalchemy import orm
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_continuum import make_versioned
 
@@ -16,6 +17,9 @@ class Article(Base):
     name = sa.Column(sa.Unicode(255))
     content = sa.Column(sa.UnicodeText)
 
+
+# after you have defined all your models, call configure_mappers:
+sa.orm.configure_mappers()
 
 article = Article(name='Some article', content='Some content')
 session.add(article)
