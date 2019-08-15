@@ -30,6 +30,27 @@ class Article(Base):
     name = sa.Column(sa.Unicode(255))
     content = sa.Column(sa.UnicodeText)
 
+    def __repr__(self):
+        return "<Article(name='%s', content='%s')>" % (
+                            self.name, self.content)
+
+
+class Event(Base):
+    __versioned__ = {}
+    __tablename__ = 'events'
+    id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
+    name = sa.Column(sa.String())
+    start_time = sa.Column(sa.DateTime, nullable=False)
+    end_time = sa.Column(sa.DateTime, nullable=False)
+    description = sa.Column(sa.Text)
+    schedule_published_on = sa.Column(sa.DateTime)
+
+    def __repr__(self):
+        return "<Event(name='%s', start_time='%s', end_time='%s', " \
+               "description='%s', schedule_published_on='%s')>" % \
+               (self.name, self.start_time, self.end_time, self.description,
+                self.schedule_published_on)
+
 
 # Needed for Continuum
 sa.orm.configure_mappers()
