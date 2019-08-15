@@ -20,8 +20,8 @@ def upgrade():
     op.create_table(
         'transaction',
         sa.Column('id', sa.Integer, primary_key=True, autoincrement=True),
-        sa.Column('issued_at', sa.String(50), nullable=False),
-        sa.Column('remote_addr', sa.DateTime(50), nullable=False),
+        sa.Column('issued_at', sa.DateTime(50), nullable=False),
+        sa.Column('remote_addr', sa.String(50)),
     )
 
 
