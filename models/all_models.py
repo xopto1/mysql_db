@@ -20,7 +20,7 @@ class User(Base):
 
     def __repr__(self):
         return "<User(first_name='%s', last_name='%s', nickname='%s')>" % (
-                            self.full_name, self.last_name, self.nickname)
+                            self.first_name, self.last_name, self.nickname)
 
 
 class Article(Base):
