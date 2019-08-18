@@ -3,25 +3,23 @@ from repos.user import UserRepository
 
 user_repo = UserRepository()
 
-# insert_record = User(
-#     first_name='First',
-#     last_name='Last',
-#     nickname='Nickname'
-# )
+new_user = User(
+    first_name='New',
+    last_name='User',
+    nickname='A'
+)
 
-record = user_repo.get(9)
 
-delete = user_repo.delete(record)
-print(f'This is the result of the delete: {delete}')
-#
-# record.first_name = 'Updated_First_Name'
-#
-# update_result = user_repo.update(record)
-#
-# print(f'This is the updated record: {update_result}')
-#
-# update_result = user_repo.update(insert_result)
-#
-# print(f'This is the updated record: {update_result}')
-#
-#
+def insert(obj):
+    insert_result = user_repo.create(obj)
+    print(f'This is the result of the insert: {insert_result}')
+
+
+def retrieve(record_id):
+    result = user_repo.get(record_id)
+
+    return result
+
+
+my_record = retrieve(10)
+print(my_record)

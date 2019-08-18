@@ -11,7 +11,6 @@ Base = declarative_base()
 
 class User(Base):
     # Needed for continuum
-    __versioned__ = {}
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     first_name = Column(String)
@@ -19,8 +18,8 @@ class User(Base):
     nickname = Column(String)
 
     def __repr__(self):
-        return "<User(first_name='%s', last_name='%s', nickname='%s')>" % (
-                            self.first_name, self.last_name, self.nickname)
+        return "<User(id=%s', first_name='%s', last_name='%s', nickname='%s')>" % (
+                            self.id, self.first_name, self.last_name, self.nickname)
 
 
 class Article(Base):

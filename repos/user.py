@@ -8,6 +8,7 @@ class UserRepository:
 
     def create(self, obj):
         self.session.add(obj)
+        self.session.commit()
         return obj
 
     def get(self, record_id):
@@ -16,6 +17,7 @@ class UserRepository:
 
     def update(self, obj):
         try:
+            self.session.commit()
             self.session.refresh(obj)
             return obj
         except Exception as e:
@@ -26,6 +28,7 @@ class UserRepository:
     def delete(self, obj):
         try:
             self.session.query(User).delete(obj.id)
+            self.session.commit()
             return obj
         except Exception as e:
             self.session.rollback()
