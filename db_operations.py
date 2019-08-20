@@ -4,15 +4,23 @@ from repos.user import UserRepository
 user_repo = UserRepository()
 
 new_user = User(
-    first_name='New',
+    first_name='Another',
     last_name='User',
     nickname='A'
 )
 
 
+update_user = User(
+    id=1,
+    first_name='DDD',
+    last_name='EEE',
+    nickname='B'
+)
+
+
 def insert(obj):
-    insert_result = user_repo.create(obj)
-    print(f'This is the result of the insert: {insert_result}')
+    result = user_repo.create(obj)
+    return result
 
 
 def retrieve(record_id):
@@ -21,5 +29,22 @@ def retrieve(record_id):
     return result
 
 
-my_record = retrieve(10)
-print(my_record)
+def update(obj):
+    result = user_repo.get(obj.id)
+    result.first_name = obj.first_name
+
+    user_repo.update(result)
+    return obj
+
+
+new_record = insert(new_user)
+print(f'this is the new_record: {new_record}')
+
+record = update(update_user)
+print(f'this is the record: {record}')
+
+# record = insert(new_user)
+# print(f'this is the record: {record}')
+#
+# my_record = retrieve(record.id)
+# print(f'this is the record: {my_record}')

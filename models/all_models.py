@@ -11,6 +11,7 @@ Base = declarative_base()
 
 class User(Base):
     # Needed for continuum
+    __versioned__ = {}
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     first_name = Column(String)
