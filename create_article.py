@@ -13,7 +13,7 @@ session = create_db_session(connect_string)
 
 class Article(Base):
     __versioned__ = {}
-    __tablename__ = 'article'
+    __tablename__ = 'articles'
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     name = sa.Column(sa.Unicode(255))
@@ -24,7 +24,7 @@ class Article(Base):
 sa.orm.configure_mappers()
 
 
-article = Article(name=u'Some article')
+article = Article(name=u'Some article', content='The content')
 session.add(article)
 session.commit()
 
